@@ -87,6 +87,7 @@ class LLMClientWrapper:
                 return func(*args, **kwargs)
             except Exception as e:
                 retries += 1
+                print(f"ACTUAL API ERROR: {type(e).__name__}: {e}", flush=True)
                 logger.error(f"Retryable error during {func.__name__}: {e}. Retry {retries}/{self.max_retries}")
                 sleep_time = self.delay * (2 ** (retries - 1))  # Exponential backoff
                 time.sleep(sleep_time)
@@ -161,7 +162,7 @@ class OpenAIWrapper(LLMClientWrapper):
         self._initialized = False
 
     def _initialize_client(self):
-        """Initialize the OpenAI client if not already initialized."""
+        """Initialize the OpenAI client if not already initialized. We changed this since we used the GroqCloud ai"""
         if not self._initialized:
             if self.client_name.lower() == "vllm":
                 self.client = OpenAI(api_key="EMPTY", base_url=self.base_url)
@@ -171,7 +172,10 @@ class OpenAIWrapper(LLMClientWrapper):
                 self.client = OpenAI(base_url=self.base_url)
             elif self.client_name.lower() == "openai":
                 # For OpenAI, always use the standard API regardless of base_url
-                self.client = OpenAI()
+                self.client = OpenAI(
+                    api_key=os.getenv("OPENAI_API_KEY"),
+                    base_url=self.base_url,
+                )
             self._initialized = True
 
     def convert_messages(self, messages):
