@@ -37,6 +37,43 @@
         "cache_icl": false
     }
 }
+=== groq: Overall Results ===
+{
+    "average_progress": 100.0,
+    "standard_error": 0.0,
+    "environments": {
+        "babyai": {
+            "progression_percentage": 100.0,
+            "standard_error": 0.0,
+            "episodes_played": 10
+        }
+    },
+    "total_input_tokens": 38177,
+    "total_output_tokens": 42592,
+    "client": {
+        "client_name": "openai",
+        "model_id": "openai/gpt-oss-120b",
+        "base_url": "https://api.groq.com/openai/v1",
+        "generate_kwargs": {
+            "temperature": 1.0,
+            "max_tokens": 4096,
+            "thinking_budget": null
+        },
+        "timeout": 120,
+        "max_retries": 3,
+        "delay": 2,
+        "alternate_roles": false
+    },
+    "agent": {
+        "type": "naive",
+        "remember_cot": true,
+        "max_text_history": 16,
+        "max_image_history": 0,
+        "max_cot_history": 1,
+        "max_icl_history": 1000,
+        "cache_icl": false
+    }
+}
 === qwen: Individual Episodes ===
 {
     "task": "BabyAI-MixedTrainLocal-v0/goto",
@@ -451,43 +488,7 @@
         "alternate_roles": false
     }
 }
-=== groq: Overall Results ===
-{
-    "average_progress": 100.0,
-    "standard_error": 0.0,
-    "environments": {
-        "babyai": {
-            "progression_percentage": 100.0,
-            "standard_error": 0.0,
-            "episodes_played": 10
-        }
-    },
-    "total_input_tokens": 38177,
-    "total_output_tokens": 42592,
-    "client": {
-        "client_name": "openai",
-        "model_id": "openai/gpt-oss-120b",
-        "base_url": "https://api.groq.com/openai/v1",
-        "generate_kwargs": {
-            "temperature": 1.0,
-            "max_tokens": 4096,
-            "thinking_budget": null
-        },
-        "timeout": 120,
-        "max_retries": 3,
-        "delay": 2,
-        "alternate_roles": false
-    },
-    "agent": {
-        "type": "naive",
-        "remember_cot": true,
-        "max_text_history": 16,
-        "max_image_history": 0,
-        "max_cot_history": 1,
-        "max_icl_history": 1000,
-        "cache_icl": false
-    }
-}
+
 === groq: Individual Episodes ===
 {
     "task": "BabyAI-MixedTrainLocal-v0/goto",
