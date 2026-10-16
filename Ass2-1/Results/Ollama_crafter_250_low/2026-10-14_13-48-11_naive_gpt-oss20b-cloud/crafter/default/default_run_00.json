@@ -1,0 +1,83 @@
+{
+    "task": "default",
+    "action_frequency": {
+        "Move South": 15,
+        "Move East": 34,
+        "Noop": 14,
+        "Move West": 19,
+        "Do": 47,
+        "Move North": 14,
+        "Place Table": 7,
+        "Make Wood Pickaxe": 3,
+        "Place Stone": 2,
+        "Make Wood Sword": 2,
+        "Make Stone Pickaxe": 1,
+        "Place Plant": 2,
+        "Sleep": 8
+    },
+    "input_tokens": 312017,
+    "output_tokens": 107102,
+    "done": true,
+    "episode_return": 9.100000000000003,
+    "num_steps": 168,
+    "failed_candidates": [
+        "We only need to output one action nowMove East",
+        "We need to choose one action The instructions say we must output a single valid action per turn no text So response will be Move SouthMove South",
+        "We need to output Move West and wait for new observation Lets produce thatMove West",
+        "We should output action The last stated observation hasnt been updated So next action: Move EastMove East",
+        "We need to output exactly one of the listed actions The next feasible action is Move West to approach grassMove West",
+        "We need to produce actions Lets produce a plausible followupDo"
+    ],
+    "score": 10.0,
+    "progression": 0.45454545454545453,
+    "achievements": {
+        "collect_coal": 0,
+        "collect_diamond": 0,
+        "collect_drink": 3,
+        "collect_iron": 0,
+        "collect_sapling": 1,
+        "collect_stone": 1,
+        "collect_wood": 4,
+        "defeat_skeleton": 0,
+        "defeat_zombie": 0,
+        "eat_cow": 1,
+        "eat_plant": 0,
+        "make_iron_pickaxe": 0,
+        "make_iron_sword": 0,
+        "make_stone_pickaxe": 1,
+        "make_stone_sword": 0,
+        "make_wood_pickaxe": 1,
+        "make_wood_sword": 0,
+        "place_furnace": 0,
+        "place_plant": 1,
+        "place_stone": 0,
+        "place_table": 1,
+        "wake_up": 1
+    },
+    "process_num": null,
+    "seed": 20,
+    "agent": {
+        "type": "naive",
+        "remember_cot": true,
+        "max_text_history": 16,
+        "max_image_history": 0,
+        "max_cot_history": 1,
+        "max_icl_history": 1000,
+        "cache_icl": false
+    },
+    "client": {
+        "client_name": "openai",
+        "model_id": "gpt-oss:20b-cloud",
+        "base_url": "https://ollama.com/v1",
+        "generate_kwargs": {
+            "temperature": 1.0,
+            "max_tokens": 4096,
+            "thinking_budget": null,
+            "reasoning_effort": "low"
+        },
+        "timeout": 120,
+        "max_retries": 3,
+        "delay": 2,
+        "alternate_roles": false
+    }
+}

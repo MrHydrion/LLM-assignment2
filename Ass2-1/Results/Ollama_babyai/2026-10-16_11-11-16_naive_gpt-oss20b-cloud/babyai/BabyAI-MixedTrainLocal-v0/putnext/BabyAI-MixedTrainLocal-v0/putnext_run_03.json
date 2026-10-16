@@ -1,0 +1,47 @@
+{
+    "task": "BabyAI-MixedTrainLocal-v0/putnext",
+    "action_frequency": {
+        "turn left": 9,
+        "go forward": 50,
+        "turn right": 8,
+        "pick up": 3,
+        "drop": 57,
+        "toggle": 1
+    },
+    "input_tokens": 98012,
+    "output_tokens": 51894,
+    "done": true,
+    "episode_return": 0.0,
+    "num_steps": 128,
+    "failed_candidates": [
+        "We will output the next action pick uppick up"
+    ],
+    "mission": "put the blue key next to the purple ball",
+    "progression": 0.0,
+    "process_num": null,
+    "seed": 21,
+    "agent": {
+        "type": "naive",
+        "remember_cot": true,
+        "max_text_history": 16,
+        "max_image_history": 0,
+        "max_cot_history": 1,
+        "max_icl_history": 1000,
+        "cache_icl": false
+    },
+    "client": {
+        "client_name": "openai",
+        "model_id": "gpt-oss:20b-cloud",
+        "base_url": "https://ollama.com/v1",
+        "generate_kwargs": {
+            "temperature": 1.0,
+            "max_tokens": 2048,
+            "thinking_budget": null,
+            "reasoning_effort": "low"
+        },
+        "timeout": 120,
+        "max_retries": 3,
+        "delay": 2,
+        "alternate_roles": false
+    }
+}

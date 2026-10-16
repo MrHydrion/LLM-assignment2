@@ -10,7 +10,7 @@ export OPENAI_API_KEY="$OLLAMA_API_KEY"
 
 
 # 2 seeds since deterministic
-for SEED in 20; do
+for SEED in 21; do
     python eval.py \
         agent.type=naive \
         agent.max_image_history=0 \
