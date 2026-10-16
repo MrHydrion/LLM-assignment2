@@ -1,0 +1,48 @@
+{
+    "task": "BabyAI-MixedTrainLocal-v0/open",
+    "action_frequency": {
+        "turn left": 8,
+        "go forward": 59,
+        "turn right": 13,
+        "toggle": 39,
+        "pick up": 5,
+        "drop": 4
+    },
+    "input_tokens": 94385,
+    "output_tokens": 350,
+    "done": true,
+    "episode_return": 0.0,
+    "num_steps": 128,
+    "failed_candidates": [
+        "Turn left",
+        "go forward\n\ngot to get through the wall",
+        "open door"
+    ],
+    "mission": "open the green door",
+    "progression": 0.0,
+    "process_num": null,
+    "seed": 21,
+    "agent": {
+        "type": "naive",
+        "remember_cot": true,
+        "max_text_history": 16,
+        "max_image_history": 0,
+        "max_cot_history": 1,
+        "max_icl_history": 1000,
+        "cache_icl": false
+    },
+    "client": {
+        "client_name": "vllm",
+        "model_id": "llama3.2:3b",
+        "base_url": "http://localhost:11434/v1",
+        "generate_kwargs": {
+            "temperature": 1.0,
+            "max_tokens": 1024,
+            "thinking_budget": null
+        },
+        "timeout": 120,
+        "max_retries": 3,
+        "delay": 2,
+        "alternate_roles": false
+    }
+}
