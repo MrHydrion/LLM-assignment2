@@ -1,0 +1,52 @@
+{
+    "task": "BabyAI-MixedTrainLocal-v0/goto",
+    "action_frequency": {
+        "turn left": 7,
+        "turn right": 2,
+        "go forward": 29,
+        "pick up": 10,
+        "toggle": 1,
+        "drop": 1
+    },
+    "input_tokens": 35941,
+    "output_tokens": 169,
+    "done": true,
+    "episode_return": 0.296875,
+    "num_steps": 50,
+    "failed_candidates": [
+        "turn right\ngo forward",
+        "turn right\ngo forward",
+        "turn left\ngo forward",
+        "turn left\ngo forward",
+        "turn left\ngo forward",
+        "turn right\ngo forward",
+        "turn left\ngo forward"
+    ],
+    "mission": "go to the blue key",
+    "progression": 1.0,
+    "process_num": null,
+    "seed": 20,
+    "agent": {
+        "type": "custom_A2",
+        "remember_cot": true,
+        "max_text_history": 16,
+        "max_image_history": 0,
+        "max_cot_history": 1,
+        "max_icl_history": 1000,
+        "cache_icl": false
+    },
+    "client": {
+        "client_name": "openai",
+        "model_id": "qwen2.5:3b",
+        "base_url": "http://172.24.160.1:11434/v1",
+        "generate_kwargs": {
+            "temperature": 1.0,
+            "max_tokens": 1024,
+            "thinking_budget": null
+        },
+        "timeout": 120,
+        "max_retries": 3,
+        "delay": 2,
+        "alternate_roles": false
+    }
+}

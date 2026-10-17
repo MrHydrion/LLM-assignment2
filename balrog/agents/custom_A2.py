@@ -1,5 +1,6 @@
 import copy
 import re
+import sys
 
 from balrog.agents.base import BaseAgent
 from collections import deque
@@ -14,6 +15,7 @@ class CustomAgent(BaseAgent):
         self.client = client_factory()
         # self.plan = None
         self.ActionMemory = deque(maxlen=10)
+        self.step_count = 0 # for debugging
 
     def act(self, obs, prev_action=None):
         """Generate the next action and update the plan based on the current observation.
@@ -51,34 +53,45 @@ class CustomAgent(BaseAgent):
             if len(self.ActionMemory) >= 2:
                 repitition, faulty_actions = self.detect_repitition()
 
+                if repitition != 0:
+                    print(
+                        f"\nLOOP DETECTED: type={repitition}, "
+                        f"actions={faulty_actions}",
+                        flush=True
+                    )
+
 
         if repitition == 0:
             warning = None
+
         elif repitition == 1:
             warning = (
-                f"Your last two attempts to use '{faulty_actions[-1]}' "
-                "produced identical observations. "
-                "This action may be ineffective. Consider another valid action."
+                f"The action '{faulty_actions[-1]}' was repeated without changing "
+                "the observation. Repeating it again is unlikely to help. "
+                "Choose a different valid action that may change the situation."
             )
+
         elif repitition == 2:
             warning = (
-                f"Your recent action sequence {faulty_actions} appears to form a repeating cycle"
-                "You may be stuck. Consider a different action from the action list"
+                f"The action sequence {faulty_actions} is repeating without progress. "
+                "Break this cycle by choosing an action outside this sequence "
+                "that helps achieve the objective."
             )
+
         elif repitition == 3:
             warning = (
-            f"Your last two attempts to use '{faulty_actions[-1]}' were invalid. "
-            "Choose a different action from the available action list."
+                f"The action '{faulty_actions[-1]}' has repeatedly been invalid. "
+                "Choose another action from the available valid actions."
             )
+
         elif repitition == 4:
-            warning =  (
-                "" 
-                f"Your recent actions {faulty_actions} produced identical observations"
-                "you may be stuck. Consier another valid action"
-                ""
+            warning = (
+                f"The recent actions {faulty_actions} have not changed the observation. "
+                "Avoid repeating this ineffective sequence. "
+                "Choose an alternative action based on your current surroundings."
             )
 
-
+               
         self.prompt_builder.update_observation(obs)
 
 #         plan_text = f"Current Plan:\n{self.plan}\n" if self.plan else "You have no plan yet.\n"
@@ -104,7 +117,28 @@ class CustomAgent(BaseAgent):
             if warning:
                 messages[-1].content += "\n\n" + warning 
 
+
         response = self.client.generate(messages)
+
+        # might delete later *sinc eadded while raging
+        if warning:
+            selected_action = self._extract_final_answer(response).completion.strip()
+
+            warning_sent = (
+                bool(messages)
+                and messages[-1].role == "user"
+                and warning in messages[-1].content
+            )
+
+            print(
+                f"FEEDBACK TEST | Step {self.step_count + 1} | "
+                f"Warning sent: {warning_sent} | "
+                f"Type: {repitition} | "
+                f"Previous: {prev_action} | "
+                f"Selected: {selected_action} | "
+                f"Changed: {selected_action != prev_action}",
+                flush=True
+            )
 
         # Extract the plan and action from the LLM's response
         # plan, action = self._extract_plan_and_action(response.completion)
@@ -116,10 +150,13 @@ class CustomAgent(BaseAgent):
         # # Save the plan in the response.reasoning field and the action in response.completion
         # response = response._replace(reasoning=plan, completion=action)
 
-        # print("\n--- OBSERVATION DEBUG ---")
+        self.step_count += 1
+
+        # print(f"\n--- OBSERVATION DEBUG (Episode Step {self.step_count} ---")
         # print("Previous action:", prev_action)
         # print("Long-term context:", repr(obs["text"].get("long_term_context", "")))
         # print("Short-term context:", repr(obs["text"].get("short_term_context", "")))
+  
 
         if repitition != 0:
             print(
@@ -187,7 +224,7 @@ class CustomAgent(BaseAgent):
             and last_2_actions[1]["invalid"]
             and last_2_actions[0]["action"] == last_2_actions[1]["action"]
         ):
-            return 3, last_2_actions[0]["action"]
+            return 3, [last_2_actions[0]["action"]]
 
         # First senario: if the last 3 actions were the same and didnt have any progress, it is a 
         # senario: Forward, Forward, Forward (with the same observation)
@@ -232,3 +269,4 @@ class CustomAgent(BaseAgent):
         """Clear short-term memory at the start of each episode."""
         super().reset()
         self.ActionMemory.clear()
+        self.step_count = 0
