@@ -1,6 +1,6 @@
 import copy
 import re
-import sys
+
 
 from balrog.agents.base import BaseAgent
 from collections import deque
@@ -13,9 +13,9 @@ class CustomAgent(BaseAgent):
     def __init__(self, client_factory, prompt_builder):
         super().__init__(client_factory, prompt_builder)
         self.client = client_factory()
-        # self.plan = None
         self.ActionMemory = deque(maxlen=10)
         self.step_count = 0 # for debugging
+        self.observed_counts = [0,0,0,0,0,0,0]
 
     def act(self, obs, prev_action=None):
         """Generate the next action and update the plan based on the current observation.
@@ -53,6 +53,8 @@ class CustomAgent(BaseAgent):
             if len(self.ActionMemory) >= 2:
                 repitition, faulty_actions = self.detect_repitition()
 
+                self.observed_counts[repitition] += 1
+
                 if repitition != 0:
                     print(
                         f"\nLOOP DETECTED: type={repitition}, "
@@ -86,24 +88,26 @@ class CustomAgent(BaseAgent):
 
         elif repitition == 4:
             warning = (
-                f"The recent actions {faulty_actions} have not changed the observation. "
-                "Avoid repeating this ineffective sequence. "
-                "Choose an alternative action based on your current surroundings."
+            f"The recent actions {faulty_actions} have not changed the observation. "
+            "You may be stuck in a loop. "
+            "Reconsider the current objective and your surroundings. "
+            "Choose an action that is likely to make progress toward the objective rather than merely switching between ineffective actions."
+            )
+
+        elif repitition == 5:
+            warning = (
+                "You have completed four consective turns in the same direction, returning to the same state you were before."
+                "Reconsinder what your objective is and chosse an action that will make progress."
+            )
+
+        elif repitition == 6:
+            warning = (
+            f"The action sequence {faulty_actions} has repeated and concluded with identical observations at the end of both cycles."
+            "Reconinsider your strategy and choose an action that helps achieve the objective. "
             )
 
                
         self.prompt_builder.update_observation(obs)
-
-#         plan_text = f"Current Plan:\n{self.plan}\n" if self.plan else "You have no plan yet.\n"
-
-#         planning_instructions = """
-# Review the current plan above if present. Decide whether to continue with it or make changes.
-# If you make changes, provide the updated plan. Then, provide the next action to take.
-# You must output an action at every step.
-# Format your answer in the following way:
-# PLAN: <your updated plan if changed, or "No changes to the plan." if the current plan is good>
-# ACTION: <your next action>
-#         """.strip()
 
         messages = self.prompt_builder.get_prompt()
         naive_instruction = (
@@ -140,15 +144,6 @@ class CustomAgent(BaseAgent):
                 flush=True
             )
 
-        # Extract the plan and action from the LLM's response
-        # plan, action = self._extract_plan_and_action(response.completion)
-
-        # # Update the internal plan if it has changed
-        # if plan != "No changes to the plan.":
-        #     self.plan = plan
-
-        # # Save the plan in the response.reasoning field and the action in response.completion
-        # response = response._replace(reasoning=plan, completion=action)
 
         self.step_count += 1
 
@@ -262,11 +257,49 @@ class CustomAgent(BaseAgent):
             ):
                 return 4, [actions["action"] for actions in last_3_actions]
 
+        # type 5: detecct of 4 consecutive turns.
+        if len(memory) >= 4:
+            if (
+                all(a["action"] == "turn left" for a in last_4_actions)
+                or all(a["action"] == "turn right" for a in last_4_actions)
+            ):
+                return 5, [actions["action"] for actions in last_4_actions]
+
+        # Type 6: Detect repeating action cycles without observable progress
+        for pattern_length in (2, 3, 4): # since the patern can be this lenght
+            required_memory_value = pattern_length * 2 # is 2 since we dont want to go over the 10 entries saved
+
+            if len(memory) >= required_memory_value:
+                recent = memory[-required_memory_value:]
+                actions = [action["action"] for action in recent]
+                pattern = actions[:pattern_length]
+
+
+                repeated_pattern = (
+                    len(set(pattern)) > 1
+                    and actions == pattern * 2
+                )
+
+                same_observation = (
+                    recent[pattern_length - 1]["short_term"] == recent[-1]["short_term"]
+                    and recent[pattern_length - 1]["long_term"] == recent[-1]["long_term"]
+                )
+
+                if repeated_pattern and same_observation:
+                    return 6, actions
+
         # return 0 if no strange case
         return 0, []
 
     def reset(self):
         """Clear short-term memory at the start of each episode."""
+        if self.step_count > 0:
+            print(
+                f"EPISODE LOOP COUNTS: {self.observed_counts}",
+                flush=True
+            )
+
         super().reset()
         self.ActionMemory.clear()
         self.step_count = 0
+        self.observed_counts = [0,0,0,0,0,0,0]

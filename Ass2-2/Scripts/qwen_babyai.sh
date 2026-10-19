@@ -10,16 +10,15 @@ echo "Ollama URL: $OLLAMA_URL"
 curl --fail --show-error "$OLLAMA_URL/models"
 echo
 
-for SEED in 20; do
+for SEED in 22; do
     python -u eval.py \
             agent.type=custom_A2 \
             agent.max_image_history=0 \
             agent.max_text_history=16 \
             envs.names=babyai \
             envs.env_kwargs.seed="$SEED" \
-            eval.output_dir="Ass2-2/Results/Qwen_babyai_v2" \
-            eval.max_steps_per_episode=100 \
-            eval.num_episodes.babyai=1 \
+            eval.output_dir="Ass2-2/Results/Qwen_babyai_final" \
+            eval.num_episodes.babyai=5 \
             eval.num_workers=1 \
             client.client_name=openai \
             client.model_id=qwen2.5:3b \
