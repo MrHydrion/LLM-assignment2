@@ -1,7 +1,10 @@
 #!/bin/bash
 set -e
 
-for SEED in 20 21; do
+export OPENAI_API_KEY="ollama"
+export OLLAMA_URL="http://$(ip route show default | awk '{print $3}'):11434/v1"
+
+for SEED in 22; do
     python eval.py \
         agent.type=naive \
         agent.max_image_history=0 \
@@ -15,7 +18,7 @@ for SEED in 20 21; do
         'tasks.babyai_tasks=["BabyAI-MixedTrainLocal-v0/goto","BabyAI-MixedTrainLocal-v0/pickup","BabyAI-MixedTrainLocal-v0/open","BabyAI-MixedTrainLocal-v0/putnext","BabyAI-MixedTrainLocal-v0/pick_up_seq_go_to"]' \
         client.client_name=vllm \
         client.model_id=llama3.2:3b \
-        client.base_url=http://localhost:11434/v1 \
+        client.base_url="$OLLAMA_URL" \
         client.generate_kwargs.max_tokens=1024 \
         client.timeout=120 \
         client.max_retries=3

@@ -1,0 +1,38 @@
+Step,Action,Reasoning,Observation,Reward,Done
+0,turn left,,"a wall 5 steps forward
+a wall 2 steps left
+a locked green door 2 steps left and 3 steps forward
+a green key 1 step left and 2 steps forward",0,False
+1,go forward,,"a wall 4 steps forward
+a wall 2 steps left
+a locked green door 2 steps left and 2 steps forward
+a green key 1 step left and 1 step forward",0,False
+2,go forward,,"a wall 3 steps forward
+a locked green door 2 steps left and 1 step forward
+a green key 1 step left",0,False
+3,"We need to navigate to open the door Lets map: We are somewhere Observation: a wall  steps forward a locked green door  steps left and  step forward a green key  step left
+
+We need to pick up key then toggle door unlockopen So first action: turn left or go forward To get key: key is  step left So we need to be facing left to pick key We dont know current orientation In previous observation earlier we had go forward after turning left but it hasnt said we turned We should decide orientation: At last action we did go forward So after moving forward orientation presumably same as before Lets assume default facing north For the key at  step left we need to foward left The format:  step left means the key is to the left of current facing position So we should turn left to face the key So action: turn leftturn left",,"
+
+Your previous output did not contain a valid action. Defaulted to action: go forward
+
+Observation:
+a wall 2 steps forward
+a locked green door 2 steps left",0,False
+4,turn left,,"a wall 2 steps right
+a green key 1 step left and 1 step forward
+a locked green door 2 steps forward",0,False
+5,go forward,,"a wall 2 steps right
+a green key 1 step left
+a locked green door 1 step forward",0,False
+6,turn left,,"a green key 1 step forward
+a locked green door 1 step right",0,False
+7,pick up,,"You carry a green key
+a wall 5 steps forward
+a locked green door 1 step right",0,False
+8,turn right,,"You carry a green key
+a wall 2 steps right
+a locked green door 1 step forward",0,False
+9,toggle,,"You carry a green key
+a wall 2 steps right
+a open green door 1 step forward",0.9296875,True

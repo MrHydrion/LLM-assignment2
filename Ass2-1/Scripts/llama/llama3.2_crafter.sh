@@ -2,8 +2,9 @@
 set -e
 
 export OPENAI_API_KEY="ollama"
+export OLLAMA_URL="http://$(ip route show default | awk '{print $3}'):11434/v1"
 
-for SEED in 20 21; do
+for SEED in 22; do
     python eval.py \
         agent.type=naive \
         agent.max_image_history=0 \
@@ -18,7 +19,7 @@ for SEED in 20 21; do
         envs.crafter_kwargs.max_episode_steps=1000 \
         client.client_name=openai \
         client.model_id=llama3.2:3b \
-        client.base_url=http://localhost:11434/v1 \
+        client.base_url="$OLLAMA_URL" \
         client.generate_kwargs.max_tokens=1024 \
         client.timeout=120 \
         client.max_retries=3 

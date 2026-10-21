@@ -1,0 +1,44 @@
+{
+    "task": "BabyAI-MixedTrainLocal-v0/open",
+    "action_frequency": {
+        "turn right": 9,
+        "go forward": 8,
+        "pick up": 1,
+        "turn left": 11,
+        "toggle": 1
+    },
+    "input_tokens": 21905,
+    "output_tokens": 9746,
+    "done": true,
+    "episode_return": 0.7890625,
+    "num_steps": 30,
+    "failed_candidates": [],
+    "mission": "open the door",
+    "progression": 1.0,
+    "process_num": null,
+    "seed": 22,
+    "agent": {
+        "type": "custom_A2",
+        "remember_cot": true,
+        "max_text_history": 16,
+        "max_image_history": 0,
+        "max_cot_history": 1,
+        "max_icl_history": 1000,
+        "cache_icl": false
+    },
+    "client": {
+        "client_name": "openai",
+        "model_id": "gpt-oss:20b-cloud",
+        "base_url": "https://ollama.com/v1",
+        "generate_kwargs": {
+            "temperature": 1.0,
+            "max_tokens": 1024,
+            "thinking_budget": null,
+            "reasoning_effort": "low"
+        },
+        "timeout": 120,
+        "max_retries": 3,
+        "delay": 2,
+        "alternate_roles": false
+    }
+}

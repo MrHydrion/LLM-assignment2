@@ -1,0 +1,50 @@
+{
+    "task": "BabyAI-MixedTrainLocal-v0/putnext",
+    "action_frequency": {
+        "go forward": 48,
+        "turn right": 20,
+        "turn left": 20,
+        "pick up": 11,
+        "drop": 26,
+        "toggle": 3
+    },
+    "input_tokens": 104205,
+    "output_tokens": 68693,
+    "done": true,
+    "episode_return": 0.0,
+    "num_steps": 128,
+    "failed_candidates": [
+        "We should output turn rightturn right",
+        "Well try action: toggletoggle",
+        "We need to give a single action now The solution requires a sequence but we respond with whatever next action\n\nObservation: blue key  step left grey ball  step forward\n\nWe need first step: go forwardgo forward",
+        "We need to output actionpick up"
+    ],
+    "mission": "put the grey ball next to the blue key",
+    "progression": 0.0,
+    "process_num": null,
+    "seed": 20,
+    "agent": {
+        "type": "custom_A2",
+        "remember_cot": true,
+        "max_text_history": 16,
+        "max_image_history": 0,
+        "max_cot_history": 1,
+        "max_icl_history": 1000,
+        "cache_icl": false
+    },
+    "client": {
+        "client_name": "openai",
+        "model_id": "gpt-oss:20b-cloud",
+        "base_url": "https://ollama.com/v1",
+        "generate_kwargs": {
+            "temperature": 1.0,
+            "max_tokens": 4096,
+            "thinking_budget": null,
+            "reasoning_effort": "low"
+        },
+        "timeout": 120,
+        "max_retries": 3,
+        "delay": 2,
+        "alternate_roles": false
+    }
+}

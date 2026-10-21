@@ -1,0 +1,46 @@
+{
+    "task": "BabyAI-MixedTrainLocal-v0/open",
+    "action_frequency": {
+        "turn left": 3,
+        "go forward": 4,
+        "pick up": 1,
+        "turn right": 1,
+        "toggle": 1
+    },
+    "input_tokens": 5801,
+    "output_tokens": 2896,
+    "done": true,
+    "episode_return": 0.9296875,
+    "num_steps": 10,
+    "failed_candidates": [
+        "We need to navigate to open the door Lets map: We are somewhere Observation: a wall  steps forward a locked green door  steps left and  step forward a green key  step left\n\nWe need to pick up key then toggle door unlockopen So first action: turn left or go forward To get key: key is  step left So we need to be facing left to pick key We dont know current orientation In previous observation earlier we had go forward after turning left but it hasnt said we turned We should decide orientation: At last action we did go forward So after moving forward orientation presumably same as before Lets assume default facing north For the key at  step left we need to foward left The format:  step left means the key is to the left of current facing position So we should turn left to face the key So action: turn leftturn left"
+    ],
+    "mission": "open the door",
+    "progression": 1.0,
+    "process_num": null,
+    "seed": 20,
+    "agent": {
+        "type": "custom_A2",
+        "remember_cot": true,
+        "max_text_history": 16,
+        "max_image_history": 0,
+        "max_cot_history": 1,
+        "max_icl_history": 1000,
+        "cache_icl": false
+    },
+    "client": {
+        "client_name": "openai",
+        "model_id": "gpt-oss:20b-cloud",
+        "base_url": "https://ollama.com/v1",
+        "generate_kwargs": {
+            "temperature": 1.0,
+            "max_tokens": 4096,
+            "thinking_budget": null,
+            "reasoning_effort": "low"
+        },
+        "timeout": 120,
+        "max_retries": 3,
+        "delay": 2,
+        "alternate_roles": false
+    }
+}
