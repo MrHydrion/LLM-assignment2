@@ -1,0 +1,58 @@
+Step,Action,Reasoning,Observation,Reward,Done
+0,turn left,"ACTION REASONING:
+ASSESSMENT: There is a wall 3 steps forward, a wall 2 steps left, and a blue key 2 steps right and 2 steps forward. The blue key is currently in the agent's path, but it's difficult to access.
+
+LESSON USED: None
+
+DECISION: To navigate to the blue key, I need to move around the walls. Since the key is currently 2 steps right and 2 steps forward, I can head in the opposite direction.
+
+ACTION: turn left","a wall 2 steps forward
+a wall 3 steps right",0,False
+1,turn right,"REFLECTION:
+Reflection: The action of turning left led directly to a change in the Observation, making it a potentially useful lesson about the consequences of that action.
+Lesson: The action of turning left has consequences.
+
+ACTION REASONING:
+ASSESSMENT: The current observation shows a wall 2 steps forward and a wall 3 steps right, indicating that I am now to the right of the original blue key's location, but still 2 steps forward from where I had turned left.
+LESSON USED: Previous experience and lessons regarding movement and navigation.
+DECISION: Since turning left now would put me in a position that is not closer to the original blue key's location, I need to turn right to return to the original location.
+ACTION: turn right","a wall 3 steps forward
+a wall 2 steps left
+a blue key 2 steps right and 2 steps forward",0,False
+2,go forward,"REFLECTION:
+REFLECTION: The evidence suggests that the agent's decision to turn right may have prevented it from moving towards the blue key, given that the key was initially located 2 steps right and 2 steps forward from the initial observation of a wall 2 steps left. This experience highlights the importance of considering the agent's overall context and direction while making decisions.
+LESSON: Always consider the overall direction and context when making decisions, as even small movements can impact the agent's progress.
+
+ACTION REASONING:
+ASSESSMENT: I am currently facing a wall and have the blue key in front of me, 2 steps right and 2 steps forward.
+LESSON USED: None
+DECISION: Since I need to reach the blue key, I should try to move past the wall in front of me and towards the blue key.
+ACTION: go forward","a wall 2 steps forward
+a wall 2 steps left
+a blue key 2 steps right and 1 step forward",0,False
+3,turn right,"REFLECTION:
+REFLECTION: The experience suggests that the action of turning left has unexpected consequences, as the wall has moved. This highlights the importance of considering the overall direction and context when making decisions, as small movements can impact the agent's progress.
+LESSON: Consider the overall direction and context when making decisions, as small movements can have significant consequences.
+
+ACTION REASONING:
+ASSESSMENT: The blue key is now within reach, but there are obstacles in front of it. The left wall blocks the path. The right wall has moved further away, but is no longer an issue.
+LESSON USED: 1. The action of turning left has consequences.
+DECISION: Turning left now would block my path to the blue key, as it is situated behind the left wall.
+ACTION: turn right","a wall 5 steps forward
+a wall 2 steps left
+a blue key 1 step left and 2 steps forward",0,False
+4,go forward,"REFLECTION:
+REFLECTION: The current observation indicates that the blue key is now closer to the agent's direction (1 step left and 2 steps forward, after turning right). The agent's movement also appears to be moving away from the initial left turn, suggesting a correction in its direction.
+
+LESSON: Consider the overall direction and context when making decisions, as small movements can have significant consequences.
+
+ACTION REASONING:
+ASSESSMENT: The agent is in a narrow path with a wall 2 steps left and 5 steps forward, with the blue key 1 step left and 2 steps forward. The agent needs to reach the blue key.
+
+LESSON USED: 1. The action of turning left has consequences.
+
+DECISION: Since turning left had consequences in the previous situation, the agent should avoid turning left to prevent backtracking. Considering the narrow path, the agent should prefer actions that move forward.
+
+ACTION: go forward","a wall 4 steps forward
+a wall 2 steps left
+a blue key 1 step left and 1 step forward",0,False

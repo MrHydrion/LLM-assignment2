@@ -1,0 +1,61 @@
+{
+    "task": "BabyAI-MixedTrainLocal-v0/putnext",
+    "action_frequency": {
+        "turn left": 29,
+        "turn right": 29,
+        "go forward": 55,
+        "pick up": 12,
+        "toggle": 1,
+        "drop": 2
+    },
+    "input_tokens": 168528,
+    "output_tokens": 14361,
+    "done": true,
+    "episode_return": 0.0,
+    "num_steps": 128,
+    "failed_candidates": [
+        "toggle the grey ball",
+        "turn forward",
+        "go forward with the blue key",
+        "turn",
+        "Turn right",
+        "Turn right",
+        "Go forward",
+        "go forward, with consideration to adjust movement plan to avoid hindrances when carrying the object.",
+        "go forward one additional step on 2 steps right",
+        "go forward 2 steps",
+        "move forward",
+        "move forward cautiously, taking into account the speed and direction of the grey ball",
+        "slow down",
+        "slow down",
+        "manipulate the blue key",
+        "Manipulate the blue key."
+    ],
+    "mission": "put the grey ball next to the blue key",
+    "progression": 0.0,
+    "process_num": null,
+    "seed": 20,
+    "agent": {
+        "type": "custom_A3",
+        "remember_cot": true,
+        "max_text_history": 16,
+        "max_image_history": 0,
+        "max_cot_history": 1,
+        "max_icl_history": 1000,
+        "cache_icl": false
+    },
+    "client": {
+        "client_name": "openai",
+        "model_id": "llama3.2:3b",
+        "base_url": "http://localhost:11434/v1",
+        "generate_kwargs": {
+            "temperature": 1.0,
+            "max_tokens": 1024,
+            "thinking_budget": null
+        },
+        "timeout": 120,
+        "max_retries": 3,
+        "delay": 2,
+        "alternate_roles": false
+    }
+}

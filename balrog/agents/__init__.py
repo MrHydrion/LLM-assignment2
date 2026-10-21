@@ -9,6 +9,7 @@ from .naive import NaiveAgent
 from .robust_naive import RobustNaiveAgent
 from .robust_cot import RobustCoTAgent
 from balrog.agents.custom_A2 import CustomAgent as CustomA2Agent
+from .custom_A3 import CustomA3Agent
 
 class AgentFactory:
     """Factory class for creating agents based on configuration.
@@ -58,6 +59,8 @@ class AgentFactory:
             return RobustCoTAgent(client_factory, prompt_builder, config=self.config)
         elif self.config.agent.type == "custom_A2":
             return CustomA2Agent(client_factory, prompt_builder)
+        elif self.config.agent.type == "custom_A3":
+            return CustomA3Agent(client_factory, prompt_builder)
     
 
         else:

@@ -1,0 +1,57 @@
+{
+    "task": "BabyAI-MixedTrainLocal-v0/pick_up_seq_go_to",
+    "action_frequency": {
+        "turn left": 24,
+        "turn right": 17,
+        "go forward": 48,
+        "pick up": 11,
+        "drop": 4,
+        "toggle": 1
+    },
+    "input_tokens": 149101,
+    "output_tokens": 11615,
+    "done": true,
+    "episode_return": 0.26171875,
+    "num_steps": 105,
+    "failed_candidates": [
+        "ASSESSMENT: \na wall 1 step forward\na purple ball 1 step right\nThe progress toward picking up the blue key is uncertain.\nThe position of the blue key is too far away from my current position.\nThe purple ball might distract from the objective.\n\nLAST OUTCOME: \na purple ball 1 step right\nNO PROGRESS toward picking up the blue key, since its position was not changed, the agent remains 2 steps behind it.",
+        "ASSESSMENT: \na wall 2 steps left\na purple ball 3 steps forward\na blue key 2 steps right and 3 steps forward\nobjective is achieved: blue key and purple ball are picked up and ready for the next step\nthe key to achieving the objective and making progress from here lies in going forward towards the purple ball. the right turn made in the last step has the agent at the ball, giving the right direction.\n\nLAST OUTCOME: \nwas progress towards the objective because I observed the blue key to be in alignment with me to hold onto it.",
+        "ASSESSMENT: \na wall 2 steps forward\na wall 1 step left\na purple ball 1 step right\na blue key 3 steps right\n\nLAST OUTCOME: \n The previous action appears to have achieved PROGRESS, as the purple ball moved from 2 steps forward and was positioned right.",
+        "ASSESSMENT: \na wall 5 steps forward\na wall 1 step left\na blue key 1 step right and 2 steps forward\na purple ball 1 step right\n\nLAST OUTCOME: \nThe previous action appears to have resulted in UNCLEAR progress. \nI was unable to see an immediate indication of progress, but didn't see any setback either.",
+        "drop, pick up",
+        "drop the key and pick it up",
+        "drop the key",
+        "ASSESSMENT:\na wall 6 steps forward and  to the left with 1 wall on each side \na blue key 2 steps on the right",
+        "drop the key",
+        "drop the key",
+        "drop the key",
+        "drop the key"
+    ],
+    "mission": "pick up the blue key, then go to the purple ball",
+    "progression": 1.0,
+    "process_num": null,
+    "seed": 21,
+    "agent": {
+        "type": "custom_A3",
+        "remember_cot": true,
+        "max_text_history": 16,
+        "max_image_history": 0,
+        "max_cot_history": 1,
+        "max_icl_history": 1000,
+        "cache_icl": false
+    },
+    "client": {
+        "client_name": "openai",
+        "model_id": "llama3.2:3b",
+        "base_url": "http://localhost:11434/v1",
+        "generate_kwargs": {
+            "temperature": 1.0,
+            "max_tokens": 1024,
+            "thinking_budget": null
+        },
+        "timeout": 120,
+        "max_retries": 3,
+        "delay": 2,
+        "alternate_roles": false
+    }
+}

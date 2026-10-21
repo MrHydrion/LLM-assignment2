@@ -1,0 +1,50 @@
+{
+    "task": "BabyAI-MixedTrainLocal-v0/pickup",
+    "action_frequency": {
+        "turn right": 8,
+        "go forward": 29,
+        "turn left": 16,
+        "pick up": 7,
+        "toggle": 3,
+        "drop": 1
+    },
+    "input_tokens": 79834,
+    "output_tokens": 5880,
+    "done": true,
+    "episode_return": 0.0,
+    "num_steps": 64,
+    "failed_candidates": [
+        "go forward and then check for any changes in the environment.",
+        "ASSESSMENT: The purple ball is within reach and should be picked up.\nNEXT ACTION: pick up",
+        "go forward and toggle (to ensure I'm not misusing the ball)",
+        "go forward (while keeping in mind the possibility that the ball may have moved or is obstructing a possible path forward)",
+        "Toggle"
+    ],
+    "mission": "pick up the purple ball",
+    "progression": 0.0,
+    "process_num": null,
+    "seed": 21,
+    "agent": {
+        "type": "custom_A3",
+        "remember_cot": true,
+        "max_text_history": 16,
+        "max_image_history": 0,
+        "max_cot_history": 1,
+        "max_icl_history": 1000,
+        "cache_icl": false
+    },
+    "client": {
+        "client_name": "openai",
+        "model_id": "llama3.2:3b",
+        "base_url": "http://localhost:11434/v1",
+        "generate_kwargs": {
+            "temperature": 1.0,
+            "max_tokens": 1024,
+            "thinking_budget": null
+        },
+        "timeout": 120,
+        "max_retries": 3,
+        "delay": 2,
+        "alternate_roles": false
+    }
+}

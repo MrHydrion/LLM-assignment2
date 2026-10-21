@@ -1,0 +1,68 @@
+Step,Action,Reasoning,Observation,Reward,Done
+0,go forward,"ACTION REASONING:
+ASSESSMENT: The current situation shows me a wall 3 steps forward and a wall 2 steps left, which blocks my direct path to the blue key. The blue key is 2 steps right and 2 steps forward from my current position, suggesting I need to move around the walls to reach it.
+
+LESSON USED: None
+
+DECISION: Since I need to navigate around the walls to reach the blue key, I should choose an action that will allow me to move closer to the key.
+
+ACTION: go forward","a wall 2 steps forward
+a wall 2 steps left
+a blue key 2 steps right and 1 step forward",0,False
+1,go forward,"REFLECTION:
+Reflection: The experience suggests that moving forward (going forward) does not necessarily bring the agent closer to the blue key. The observation of the blue key's new position is not improved by this action.
+Lesson: None
+
+ACTION REASONING:
+ASSESSMENT: The blue key is currently 2 steps right and 1 step forward from the initial position. There are two walls, one 2 steps left and the other 2 steps forward, blocking my path.
+
+LESSON USED: None
+
+DECISION: I need to navigate around the walls to reach the blue key. Since the blue key is 1 step forward, I should try to move forward while navigating around the walls.
+
+ACTION: go forward","a wall 1 step forward
+a wall 2 steps left
+a blue key 2 steps right",0,False
+2,turn right,"REFLECTION:
+REFLECTION: The experience did not provide conclusive evidence about the consequences of turning forward when reaching the blue key. The wall movement and blue key's initial position remained the same.
+
+LESSON: None
+
+ACTION REASONING:
+ASSESSMENT: I am currently in a position where I am two steps right from the blue key.
+I am facing two walls, one left and one right, and the blue key is two steps right of the left wall.
+I can go forward, turn left, turn right, pick up nothing, drop something I don't have, or toggle nothing.
+
+LESSON USED: None
+
+DECISION: To move closer to the blue key, I should go around the left wall to reach the blue key.
+
+ ACTION: turn right","a wall 1 step left
+a blue key 2 steps forward",0,False
+3,turn left,"REFLECTION:
+REFLECTION: The experience suggests that turning right when the blue key is 2 steps right may not be the most efficient way to approach it. The key moved 1 step to the right in the next observation, indicating that turning right may not be the best strategy to capture the key.
+
+LESSON: Approach the blue key from a perpendicular direction to ensure that you are moving directly towards it.
+
+ACTION REASONING:
+ASSESSMENT: I am currently 2 steps forward from the blue key, and there's a wall 1 step to my left, blocking my path.
+
+LESSON USED: Previous experience suggests approaching the blue key from a perpendicular direction.
+
+DECISION: Since I am currently blocked by the wall and the blue key is 2 steps forward, I should move around the wall to reach it.
+
+ACTION: turn left","a wall 1 step forward
+a wall 2 steps left
+a blue key 2 steps right",0,False
+4,turn right,"REFLECTION:
+Reflection:
+The action of turning left resulted in a change in the environment, but it didn't bring the agent closer to the blue key. However, the evidence suggests that the agent was initially moving towards the blue key with the turn left action. The lesson learned is that approaching the blue key from a perpendicular direction might be the most efficient route.
+
+LESSON: Approach the blue key from a perpendicular direction.
+
+ACTION REASONING:
+ASSESSMENT: The current situation is that the wall is blocking direct access to the blue key, but moving to the side of the key might allow for a closer approach.
+LESSON USED: Approach the blue key from a perpendicular direction to ensure direct movement.
+DECISION: Given the wall is blocking direct access, approaching the blue key from a different angle is necessary.
+ACTION: turn right","a wall 1 step left
+a blue key 2 steps forward",0,False

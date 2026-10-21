@@ -1,0 +1,136 @@
+Step,Action,Reasoning,Observation,Reward,Done
+0,go forward,"ACTION REASONING:
+ASSESSMENT: Visible blue key 2 steps right and 2 steps forward, a wall 3 steps forward, a wall 2 steps left
+LAST OUTCOME: No previous action, initial observation
+LESSON USED: None
+PLAN REVISION: Current line of action might be effective, but it is crucial to confirm if the key is within the immediate area or it's just a correct description of the environment. Further investigation is needed before proceeding.
+ACTION: go forward","a wall 2 steps forward
+a wall 2 steps left
+a blue key 2 steps right and 1 step forward",0,False
+1,turn left,"REFLECTION:
+EVIDENCE: 
+longer wall is now visible to my left
+
+OUTCOME: 
+SETBACK, Because I couldn't reach the blue key.
+
+CAUSALITY: 
+the action plausibly contributed but to insufficient degree or time.
+
+REFLECTION: 
+due to short forward path I could reach the wall and wasn't able to progress forward, I should keep an eye out when moving forward.
+
+LESSON: 
+Before progressing farther, ensure that the path to the goal is clear and not blocked by obstacles.
+
+ACTION REASONING:
+ASSESSMENT: a wall 2 steps left, a blue key 2 steps right and 1 step forward
+LAST OUTCOME: The outcome of go forward was the observation of a blue key 2 steps right and 1 step forward
+LESSON USED: None
+PLAN REVISION: None
+ACTION: turn left","a wall 2 steps forward
+a wall 2 steps right",0,False
+2,turn right,"REFLECTION:
+EVIDENCE: A wall 2 steps right
+OUTCOME: Uncertain
+CAUSALITY: The action of turning left likely obscured or missed the blue key, but it did not block or hinder progress in any significant way.
+REFLECTION: It appears that turning left immediately when reaching the blue key area may not be the wisest approach, as it prevents the agent from seeing and potentially interacting with the key object more effectively.
+LESSON: Be cautious when approaching a goal, especially if the direct path may obscure or be uninteresting, and spend a moment to look around and identify alternative paths or interact with objects in the environment before proceeding.
+
+ACTION REASONING:
+ASSESSMENT: The objective of reaching the blue key is unclear due to a lack of observed progress.
+LAST OUTCOME: The action 'turn left' seems to have resulted in NO PROGRESS, as the blue key still appears to be within reach.
+LESSON USED: None
+PLAN REVISION: The current path to the blue key is still unclear, and another action is needed to gather more information about the environment before progressing.
+ACTION: turn right","a wall 2 steps forward
+a wall 2 steps left
+a blue key 2 steps right and 1 step forward",0,False
+3,go forward,"REFLECTION:
+EVIDENCE: a wall 2 steps right was replaced by a wall 2 steps left
+OUTCOME: uncertain
+CAUSALITY: 0 (the action plausibly contributed to the unclear result)
+
+REFLECTION: The reflection mechanism is not being utilized effectively. 
+LESSON: Revisit existing lessons to ensure they are still relevant and actionable.
+
+ACTION REASONING:
+ASSESSMENT: a blue key 2 steps right and 1 step forward, an unobstructed path to the blue key
+LAST OUTCOME: a blue key not visible
+LESSON USED: 
+Analyze the environment to determine if the direct path to the goal is clear and not obstructed.
+Reconsider the approach taken when the previous outcome was unclear
+PLAN REVISION: The direct path to the goal is now clear, revise the plan to focus on reaching the goal
+ACTION: go forward","a wall 1 step forward
+a wall 2 steps left
+a blue key 2 steps right",0,False
+4,turn right,"REFLECTION:
+EVIDENCE: no meaningful change observed
+OUTCOME: uncertain
+CAUSALITY: low plausibility
+REFLECTION: The agent made a forward action without assessing the environment for any potential obstacles or alternative paths, which may have hindered progress towards the goal.
+LESSON: Before progressing farther, ensure that the path to the goal is clear and not blocked by obstacles.
+
+ACTION REASONING:
+ASSESSMENT: A blue key is visible in the environment.
+LAST OUTCOME: The previous action to turn right did not progress the agent closer to the blue key.
+LESSON USED: None
+PLAN REVISION: The approach of simply moving forward does not seem to be effective in this case.
+ACTION: turn right","a wall 1 step left
+a blue key 2 steps forward",0,False
+5,pick up,"REFLECTION:
+EVIDENCE: a wall 1 step left, a blue key 2 steps forward
+
+OUTCOME: Progress, with reason
+
+CAUSALITY: The previous action (turn right) plausibly contributed to the observed result, as turning right likely cleared the previously obstructive wall, making the path to the blue key clearer.
+
+REFLECTION: By turning right, the agent successfully cleared the path to the blue key without needing to backtrack.
+
+LESSON: Before progressing farther, ensure that the path to the goal is clear and not blocked by obstacles.
+
+ACTION REASONING:
+ASSESSMENT: a blue key is now directly in front of me, within reach.
+LAST OUTCOME: The previous action appears to have resulted in PROGRESS.
+LESSON USED: None
+PLAN REVISION: None
+ACTION: pick up","a wall 1 step left
+a blue key 2 steps forward",0,False
+6,toggle,"REFLECTION:
+EVIDENCE: none, the observation doesn't reveal any meaningful change
+
+OUTCOME: uncertain, the blue key is closer but still out of reach
+
+CAUSALITY: the pick-up action does not plausibly contribute to the observed result, the key was already in the new position before picking it
+
+REFLECTION: The agent should not have picked up the blue key, as it was already in a position to be retrieved without obstruction, and proceeding without checking could increase the risk of setting back progress.
+
+LESSON: None
+
+ACTION REASONING:
+ASSESSMENT: The blue key is 2 steps forward
+LAST OUTCOME: The previous action may not have resulted in progress because we do not know how the blue key can be utilized, and we can pick it up and manipulate it with the toggle action.
+LESSON USED: None
+PLAN REVISION: Since we can manipulate the blue key now that we have picked it up, we should consider an approach incorporating the toggle and using the object appropriately.
+ACTION: toggle","a wall 1 step left
+a blue key 2 steps forward",0,False
+7,pick up,"REFLECTION:
+EVIDENCE: a wall 1 step left
+a blue key 2 steps forward
+A more prominent placement of the blue key in the environment was achieved.
+
+OUTCOME: PROGRESS
+The previous action contributed to reaching the blue key, making progress towards the objective.
+
+CAUSALITY: The action plausibly contributed, as toggling likely altered the state of the object in front of the agent, making it more accessible or visible. However, other factors, like the presence of the wall on one side, may also have influenced the perceived result.
+
+REFLECTION: The action of toggling was an effective way to interact with the object in front of us in this position, allowing us to make progress towards our goal.
+
+LESSON: Ensure the environment is manipulated when approaching a potentially obstructive object from an indirect angle.
+
+ACTION REASONING:
+ASSESSMENT: The blue key is now within reach, and the path ahead appears clear.
+LAST OUTCOME: The previous action (toggle) did not alter the environment, but it's uncertain if it affected the key's accessibility.
+LESSON USED: None
+PLAN REVISION: No revision is necessary, as the key is within reach and there's no apparent blockage.
+ACTION: pick up","a wall 1 step left
+a blue key 2 steps forward",0,False
