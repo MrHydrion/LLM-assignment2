@@ -2,7 +2,7 @@
 set -e
 
 export OPENAI_API_KEY="ollama"
-SEEDS=(20)
+SEEDS=(21)
 
 for SEED in "${SEEDS[@]}"; do
     echo "Running seed $SEED"

@@ -17,7 +17,7 @@ class CustomA3Agent(BaseAgent):
         self.reflection_memory = []
         self.max_memory_size = 5
 
-        # Keep the observation from the preceding decision for self-reflection.
+        # keep the observation from the preceding decision for self-reflection.
         self.previous_observation = None
 
 
@@ -25,6 +25,7 @@ class CustomA3Agent(BaseAgent):
     def act(self, obs, prev_action=None):
         """Reflect on previous experience, update memory, and select an action."""
 
+        # update the conversation
         if prev_action:
             self.prompt_builder.update_action(prev_action)
 
@@ -32,21 +33,20 @@ class CustomA3Agent(BaseAgent):
         messages = copy.deepcopy(self.prompt_builder.get_prompt())
         reflection_text = ""
 
-        # first decision no prior to reflect on.
+        # reflect on perevious action, first decision no prior to reflect on
         if prev_action is not None and self.previous_observation is not None:
 
             reflection_text = self.reflect(previous_observation=self.previous_observation, previous_action=prev_action, current_observation=obs, messages=messages)
-
             lesson = self.extract_field(reflection_text, "LESSON")
 
             if lesson:
                 self.remember_lesson(lesson)
 
-        # the original task prompt plus the lessons learned so far.
+        # the original task prompt plus the lessons learned so far
         action_messages = copy.deepcopy(messages)
         memory_text = self.format_memory()
 
-
+        # reflection to tell the model how to choose an action
         reflexion_instructions = f"""
         You are an agent that must achieve the objective specified in the task.
 
@@ -100,6 +100,7 @@ class CustomA3Agent(BaseAgent):
         if action_messages and action_messages[-1].role == "user":
             action_messages[-1].content += ("\n\n" + reflexion_instructions)
 
+        # get the action from the llm
         response = self.client.generate(action_messages)
         action = self.extract_action(response.completion)
         self.previous_observation = copy.deepcopy(obs)
@@ -122,7 +123,7 @@ class CustomA3Agent(BaseAgent):
         current_text = self.format_observation(current_observation)
         memory_text = self.format_memory()
 
-
+        # prompt reflecting on the action
         reflection_prompt = f"""
         You are the reflection component of a general-purpose Reflexion agent.
         Your goal is to learn from the result of the agent's previous action and produce a useful lesson that can improve future decisions.
@@ -207,6 +208,7 @@ class CustomA3Agent(BaseAgent):
 
         lesson = re.sub(r"\s+", " ", lesson).strip()
 
+        # no lesson, not usefull
         if not lesson or lesson.lower() in {
             "none", 
             "n/a", 
@@ -217,6 +219,7 @@ class CustomA3Agent(BaseAgent):
 
         normalized = self.normalize_text(lesson)
 
+        # lessons that dont say anything are not usefull
         generic_lessons = {
             "actions have consequences",
             "consider the overall situation",
@@ -229,6 +232,7 @@ class CustomA3Agent(BaseAgent):
         if normalized in generic_lessons:
             return
 
+        # add usefull new lessons
         for index, existing in enumerate(self.reflection_memory):
             if self.normalize_text(existing) == normalized:
                 return
@@ -240,7 +244,7 @@ class CustomA3Agent(BaseAgent):
 
 
     def format_memory(self):
-        """Format episodic memory for inclusion in an LLM prompt."""
+        """Format memory for the prompt."""
 
         if not self.reflection_memory:
             return "No lessons have been learned yet."
