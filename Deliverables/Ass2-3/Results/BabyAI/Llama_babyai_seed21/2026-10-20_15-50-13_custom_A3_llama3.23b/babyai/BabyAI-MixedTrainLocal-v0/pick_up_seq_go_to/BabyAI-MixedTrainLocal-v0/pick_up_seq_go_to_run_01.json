@@ -1,0 +1,64 @@
+{
+    "task": "BabyAI-MixedTrainLocal-v0/pick_up_seq_go_to",
+    "action_frequency": {
+        "turn right": 23,
+        "turn left": 32,
+        "go forward": 62,
+        "drop": 1,
+        "pick up": 10
+    },
+    "input_tokens": 177079,
+    "output_tokens": 14041,
+    "done": true,
+    "episode_return": 0.0,
+    "num_steps": 128,
+    "failed_candidates": [
+        "I will go forward and recheck the environment before making a decision.",
+        "pick up blue key",
+        "toggle blue key",
+        "toggle blue key",
+        "toggle blue key",
+        "toggle blue key",
+        "go left",
+        "go left",
+        "turn around",
+        "pick up blue key",
+        "Go forward",
+        "pick up blue key",
+        "pick up purple ball",
+        "toggle blue key",
+        "pick up purple ball",
+        "Turn right",
+        "go forward with caution, re-calculating positions carefully before taking the next step.",
+        "go forward, being more cautious this time to assess the new proximity of the blue key.",
+        "go forward cautiously",
+        "ASSESSMENT: \nYou have the blue key now\na wall 3 steps right\n\nLAST OUTCOME: You picked up the blue key\na wall moved \na wall 3steps left"
+    ],
+    "mission": "pick up the blue key, then go to the purple ball",
+    "progression": 0.0,
+    "process_num": null,
+    "seed": 21,
+    "agent": {
+        "type": "custom_A3",
+        "remember_cot": true,
+        "max_text_history": 16,
+        "max_image_history": 0,
+        "max_cot_history": 1,
+        "max_icl_history": 1000,
+        "cache_icl": false
+    },
+    "client": {
+        "client_name": "openai",
+        "model_id": "llama3.2:3b",
+        "base_url": "http://localhost:11434/v1",
+        "generate_kwargs": {
+            "temperature": 1.0,
+            "max_tokens": 1024,
+            "thinking_budget": null
+        },
+        "timeout": 120,
+        "max_retries": 3,
+        "delay": 2,
+        "alternate_roles": false
+    }
+}

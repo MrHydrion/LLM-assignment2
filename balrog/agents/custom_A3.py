@@ -9,7 +9,6 @@ class CustomA3Agent(BaseAgent):
     """A general Reflexion agent with natural-language episodic memory."""
 
 
-
     def __init__(self, client_factory, prompt_builder):
         super().__init__(client_factory, prompt_builder)
 

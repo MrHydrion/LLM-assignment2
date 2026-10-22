@@ -12,7 +12,7 @@ for SEED in "${SEEDS[@]}"; do
         agent.type=custom_A3 \
         agent.max_image_history=0 \
         agent.max_text_history=16 \
-        eval.output_dir="Ass2-3/Results/BabyAI/babyai_seed${SEED}" \
+        eval.output_dir="Ass2-3/Results/BabyAI/Llama_babyai_seed${SEED}" \
         eval.num_workers=1 \
         eval.num_episodes.babyai=5 \
         eval.save_trajectories=true \

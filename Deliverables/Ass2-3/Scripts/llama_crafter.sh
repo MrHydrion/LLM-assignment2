@@ -14,7 +14,7 @@ for SEED in "${SEEDS[@]}"; do
         agent.max_text_history=16 \
         envs.names=crafter \
         envs.crafter_kwargs.max_episode_steps=1000 \
-        eval.output_dir="Ass2-3/Results/Crafter/test/llama_crafter_seed${SEED}" \
+        eval.output_dir="Ass2-3/Results/Crafter/Llama_crafter_seed${SEED}" \
         eval.num_episodes.crafter=5 \
         eval.num_workers=1 \
         eval.save_trajectories=true \

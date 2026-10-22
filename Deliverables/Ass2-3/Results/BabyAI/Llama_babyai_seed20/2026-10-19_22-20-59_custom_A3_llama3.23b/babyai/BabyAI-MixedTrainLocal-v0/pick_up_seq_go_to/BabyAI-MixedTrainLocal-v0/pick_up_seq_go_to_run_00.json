@@ -1,0 +1,55 @@
+{
+    "task": "BabyAI-MixedTrainLocal-v0/pick_up_seq_go_to",
+    "action_frequency": {
+        "go forward": 64,
+        "turn right": 23,
+        "pick up": 15,
+        "turn left": 23,
+        "toggle": 2,
+        "drop": 1
+    },
+    "input_tokens": 177461,
+    "output_tokens": 14399,
+    "done": true,
+    "episode_return": 0.0,
+    "num_steps": 128,
+    "failed_candidates": [
+        "go back",
+        "go back",
+        "go back",
+        "go back",
+        "Turn left",
+        "ASSESSMENT: \nI am currently able to carry the blue key, and I am forward 1 step away from the wall, which seems an effective transition based on previous choices. However the environment could be changed in many ways. \n\nLAST OUTCOME: \nI picked up the grey ball but was not able to make progress with other objects. No progress.\n\nLESSON USED: \nNone of the given lessons apply directly to the problem of continuing along the forward track based on a previous correct action, so they cannot be used to justify the next action.",
+        "toggle the grey ball",
+        "ASSESSMENT: \nYou carry a blue key\na wall 3 steps forward\na wall 1 step right\na grey ball 2 steps left",
+        "toggle the grey ball",
+        "toggle the grey ball"
+    ],
+    "mission": "pick up the grey ball, then go to the blue key",
+    "progression": 0.0,
+    "process_num": null,
+    "seed": 20,
+    "agent": {
+        "type": "custom_A3",
+        "remember_cot": true,
+        "max_text_history": 16,
+        "max_image_history": 0,
+        "max_cot_history": 1,
+        "max_icl_history": 1000,
+        "cache_icl": false
+    },
+    "client": {
+        "client_name": "openai",
+        "model_id": "llama3.2:3b",
+        "base_url": "http://localhost:11434/v1",
+        "generate_kwargs": {
+            "temperature": 1.0,
+            "max_tokens": 1024,
+            "thinking_budget": null
+        },
+        "timeout": 120,
+        "max_retries": 3,
+        "delay": 2,
+        "alternate_roles": false
+    }
+}

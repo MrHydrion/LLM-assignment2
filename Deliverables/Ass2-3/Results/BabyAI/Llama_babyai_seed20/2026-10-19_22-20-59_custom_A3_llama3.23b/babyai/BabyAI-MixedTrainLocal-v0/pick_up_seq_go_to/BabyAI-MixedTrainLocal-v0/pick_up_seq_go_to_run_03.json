@@ -1,0 +1,53 @@
+{
+    "task": "BabyAI-MixedTrainLocal-v0/pick_up_seq_go_to",
+    "action_frequency": {
+        "turn right": 33,
+        "turn left": 31,
+        "go forward": 39,
+        "pick up": 21,
+        "drop": 2,
+        "toggle": 2
+    },
+    "input_tokens": 179084,
+    "output_tokens": 14151,
+    "done": true,
+    "episode_return": 0.0,
+    "num_steps": 128,
+    "failed_candidates": [
+        "Turn right",
+        "ASSESMENT: A wall 3 steps forward, a blue key 1 step left, no grey ball in sight.\nLAST OUTCOME: dropping grey ball did not move forward.\n \n\nNo lessons applied\n\n No further revisions on progress needed.\n\nturn right",
+        "drop the blue key",
+        "drop the grey ball",
+        "drop the grey ball",
+        "drop the grey ball",
+        "pick up the grey ball again",
+        "Turn left"
+    ],
+    "mission": "pick up the grey ball, then go to the blue key",
+    "progression": 0.0,
+    "process_num": null,
+    "seed": 20,
+    "agent": {
+        "type": "custom_A3",
+        "remember_cot": true,
+        "max_text_history": 16,
+        "max_image_history": 0,
+        "max_cot_history": 1,
+        "max_icl_history": 1000,
+        "cache_icl": false
+    },
+    "client": {
+        "client_name": "openai",
+        "model_id": "llama3.2:3b",
+        "base_url": "http://localhost:11434/v1",
+        "generate_kwargs": {
+            "temperature": 1.0,
+            "max_tokens": 1024,
+            "thinking_budget": null
+        },
+        "timeout": 120,
+        "max_retries": 3,
+        "delay": 2,
+        "alternate_roles": false
+    }
+}

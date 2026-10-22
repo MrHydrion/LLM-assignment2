@@ -1,0 +1,48 @@
+{
+    "task": "BabyAI-MixedTrainLocal-v0/putnext",
+    "action_frequency": {
+        "turn right": 27,
+        "pick up": 12,
+        "go forward": 56,
+        "toggle": 7,
+        "turn left": 26
+    },
+    "input_tokens": 170912,
+    "output_tokens": 13786,
+    "done": true,
+    "episode_return": 0.0,
+    "num_steps": 128,
+    "failed_candidates": [
+        "Turn left",
+        "try to get a better reading on how far away the blue key is and where the grey ball is",
+        "Turn left",
+        "Turn left"
+    ],
+    "mission": "put the grey ball next to the blue key",
+    "progression": 0.0,
+    "process_num": null,
+    "seed": 20,
+    "agent": {
+        "type": "custom_A3",
+        "remember_cot": true,
+        "max_text_history": 16,
+        "max_image_history": 0,
+        "max_cot_history": 1,
+        "max_icl_history": 1000,
+        "cache_icl": false
+    },
+    "client": {
+        "client_name": "openai",
+        "model_id": "llama3.2:3b",
+        "base_url": "http://localhost:11434/v1",
+        "generate_kwargs": {
+            "temperature": 1.0,
+            "max_tokens": 1024,
+            "thinking_budget": null
+        },
+        "timeout": 120,
+        "max_retries": 3,
+        "delay": 2,
+        "alternate_roles": false
+    }
+}

@@ -1,0 +1,52 @@
+{
+    "task": "BabyAI-MixedTrainLocal-v0/pick_up_seq_go_to",
+    "action_frequency": {
+        "turn left": 23,
+        "go forward": 55,
+        "turn right": 23,
+        "pick up": 24,
+        "toggle": 3
+    },
+    "input_tokens": 172260,
+    "output_tokens": 14219,
+    "done": true,
+    "episode_return": 0.0,
+    "num_steps": 128,
+    "failed_candidates": [
+        "Pick up the grey ball",
+        "go back",
+        "drop the grey ball",
+        "ASSESSMENT: The grey ball is now very close to me, but the wall has moved further to my left, making it harder to reach without adjusting my path.\nNEXT ACTION: toggle",
+        "evaluate the previous outcome before choosing the next action",
+        "go back 2 steps",
+        "pick up grey ball",
+        "pick up grey ball"
+    ],
+    "mission": "pick up the grey ball, then go to the blue key",
+    "progression": 0.0,
+    "process_num": null,
+    "seed": 20,
+    "agent": {
+        "type": "custom_A3",
+        "remember_cot": true,
+        "max_text_history": 16,
+        "max_image_history": 0,
+        "max_cot_history": 1,
+        "max_icl_history": 1000,
+        "cache_icl": false
+    },
+    "client": {
+        "client_name": "openai",
+        "model_id": "llama3.2:3b",
+        "base_url": "http://localhost:11434/v1",
+        "generate_kwargs": {
+            "temperature": 1.0,
+            "max_tokens": 1024,
+            "thinking_budget": null
+        },
+        "timeout": 120,
+        "max_retries": 3,
+        "delay": 2,
+        "alternate_roles": false
+    }
+}
