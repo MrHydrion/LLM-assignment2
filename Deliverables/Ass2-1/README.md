@@ -47,10 +47,12 @@ For the cloud model code to run, you need to set up an API key.
 You can do that with the following command in the wsl terminal:
 
 ```bash
-OLLAMA_API_KEY=<Apikey>
+export OLLAMA_API_KEY="your_api_key"
 ```
 
-replace '<APIKEY>' with the API key that you created on the site: https://ollama.com/settings/keys
+replace 'your_api_key' with the API key that you created on the site: https://ollama.com/settings/keys
+
+The evaluation scripts automatically configure the API authentication and connect to the Ollama cloud endpoint.
 
 ## Running the experiments
 
@@ -80,6 +82,12 @@ The following models were evaluated during Exercise 1:
 - Crafter: Exploration, survival and achievemnet progression
 
 ## Results
+
+BabyAI performance is measured by task success rate.
+
+Crafter performance is measured by the percentage of 22 distinct achievements completed.
+
+The detailed results and analysis are presented in the assignment report.
 
 ## Limitations 
 
