@@ -242,7 +242,6 @@ class CustomA3Agent(BaseAgent):
 
 
 
-
     def format_memory(self):
         """Format memory for the prompt."""
 

@@ -1,7 +1,9 @@
 #!/bin/bash
 set -e
 
-for SEED in 20 21; do
+export OPENAI_API_KEY="ollama"
+
+for SEED in 20; do
     python eval.py \
         agent.type=naive \
         agent.max_image_history=0 \
