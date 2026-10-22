@@ -4,7 +4,7 @@ set -e
 export OPENAI_API_KEY="ollama"
 export OLLAMA_URL="http://$(ip route show default | awk '{print $3}'):11434/v1"
 
-for SEED in 22; do
+for SEED in 20 21; do
     python eval.py \
         agent.type=naive \
         agent.max_image_history=0 \
